@@ -15,11 +15,6 @@ const SearchForm = () => {
 		fetchData(name || "");
 	};
 
-	const handleChange = (e: any) => {
-		setName(e.target.value);
-		console.log("Input value:", e.target.value);
-	};
-
 	const ResultArea = () => {
 		console.log("Result: ", JSON.stringify(data, null, 2));
 
@@ -72,7 +67,7 @@ const SearchForm = () => {
 			<form className="flex flex-col" onSubmit={handleSubmit}>
 				<input
 					value={name || ""}
-					onChange={handleChange}
+					onChange={(e) => setName(e.target.value)}
 					type="text"
 					className="text-black text-xl px-2 py-1 my-1 rounded"
 				/>
