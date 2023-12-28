@@ -1,14 +1,34 @@
 "use client";
 
 import { useQueryState } from "next-usequerystate";
-import Button from "./Button";
+import Button from "./button";
+import axios from "axios";
+import { useState } from "react";
 
 const SearchForm = () => {
 	const [name, setName] = useQueryState("");
+	const [data, setData] = useState(null);
+
+	const fetchData = async () => {
+		const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
+		try {
+			const response = await axios.get(
+				`https://api.themoviedb.org/3/search/movie?${API_KEY}&query=${name}`,
+			);
+			const data = response.data;
+			setData(data);
+
+			console.log("🚀 ~ file: searchForm.tsx:15 ~ fetchData ~ data:", data);
+			// Process the data
+		} catch (error) {
+			// Handle errors
+			console.warn("There was an error", error);
+		}
+	};
 
 	const handleSubmit = (e: any) => {
 		e.preventDefault();
-		console.log("Search term:", name);
+		fetchData();
 	};
 
 	const handleChange = (e: any) => {
@@ -36,6 +56,7 @@ const SearchForm = () => {
 					</Button>
 				</div>
 			</form>
+			{data && name && JSON.stringify(data, null, 2)}
 		</div>
 	);
 };
