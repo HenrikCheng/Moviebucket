@@ -4,6 +4,7 @@ import { useQueryState } from "next-usequerystate";
 import Button from "./button";
 import axios from "axios";
 import { useState } from "react";
+import FeatureContent from "./featureContent";
 
 const SearchForm = () => {
 	const [name, setName] = useQueryState("");
@@ -36,6 +37,26 @@ const SearchForm = () => {
 		console.log("Input value:", e.target.value);
 	};
 
+	const ResultArea = () => {
+		console.log("Result: ", JSON.stringify(data, null, 2));
+
+		if (data !== null) {
+			const movieData = data as {
+				results?: { id: string; original_title: string }[];
+			};
+
+			return (
+				<ul>
+					{movieData.results?.map((item) => (
+						<li key={item.id}>{item.original_title}</li>
+					))}
+				</ul>
+			);
+		}
+
+		return <FeatureContent />;
+	};
+
 	return (
 		<div className="flex flex-col items-center" onSubmit={handleSubmit}>
 			<h1 className="text-5xl sm:text-6xl md:text-8xl font-mono font-thin mb-4">
@@ -51,12 +72,18 @@ const SearchForm = () => {
 				/>
 				<div className="flex justify-center mt-4 space-x-2">
 					<Button type="submit">Search</Button>
-					<Button style="red" onClick={() => setName(null)}>
+					<Button
+						style="red"
+						onClick={() => {
+							setName(null);
+							setData(null);
+						}}
+					>
 						Clear
 					</Button>
 				</div>
 			</form>
-			{data && name && JSON.stringify(data, null, 2)}
+			<ResultArea />
 		</div>
 	);
 };
