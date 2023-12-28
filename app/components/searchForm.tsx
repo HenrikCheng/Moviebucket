@@ -1,7 +1,8 @@
 "use client";
+import { useRouter } from "next/router";
 import { useState } from "react";
 
-const SearchArea = () => {
+const SearchForm = () => {
 	const [searchTerm, setSearchTerm] = useState("");
 
 	const handleSubmit = (e: any) => {
@@ -21,7 +22,7 @@ const SearchArea = () => {
 			<form className="flex flex-col" onSubmit={handleSubmit}>
 				<input
 					type="text"
-					className="text-black px-2 py-1 my-1"
+					className="text-black text-xl px-2 py-1 my-1 rounded"
 					value={searchTerm}
 					onChange={handleChange}
 				/>
@@ -31,4 +32,4 @@ const SearchArea = () => {
 	);
 };
 
-export default SearchArea;
+export default SearchForm;
