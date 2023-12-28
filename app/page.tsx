@@ -1,4 +1,3 @@
-import Image from "next/image";
 import SearchForm from "./components/searchForm";
 
 export default function Home() {

@@ -4,6 +4,7 @@ import { useQueryState } from "next-usequerystate";
 import Button from "./button";
 import useMovieSearch from "../hooks/useMovieSearch"; // Import the custom hook
 import FeatureContent from "./featureContent";
+import Image from "next/image";
 
 const SearchForm = () => {
 	const [name, setName] = useQueryState("");
@@ -26,13 +27,34 @@ const SearchForm = () => {
 		if (error) return <p>Error: {error.message}</p>;
 		if (data !== null && name !== null) {
 			const movieData = data as {
-				results?: { id: string; original_title: string }[];
+				results?: {
+					id: string;
+					title: string;
+					poster_path: string;
+					backdrop_path: string;
+					overview: string;
+				}[];
 			};
 
 			return (
 				<ul>
 					{movieData.results?.map((item) => (
-						<li key={item.id}>{item.original_title}</li>
+						<li key={item.id}>
+							{item.title}
+							<Image
+								src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
+								width={500}
+								height={500}
+								alt="Picture of the author"
+							/>
+							<Image
+								src={`https://image.tmdb.org/t/p/w500/${item.backdrop_path}`}
+								width={500}
+								height={500}
+								alt="Picture of the author"
+							/>
+							{item.overview}
+						</li>
 					))}
 				</ul>
 			);
