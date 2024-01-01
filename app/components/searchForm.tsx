@@ -18,7 +18,7 @@ const SearchForm = () => {
   const ResultArea = () => {
     console.log("Result: ", JSON.stringify(data, null, 2));
 
-    if (loading) return <p>Loading...</p>;
+    if (loading) return <p>Loading....</p>;
     if (error) {
       // Type assertion for error object
       const errorObject = error as Error;
