@@ -64,7 +64,10 @@ const SearchForm = () => {
   };
 
   return (
-    <div className="flex flex-col items-center" onSubmit={handleSubmit}>
+    <div
+      className="flex flex-col items-center grow justify-around"
+      onSubmit={handleSubmit}
+    >
       <h1 className="text-5xl sm:text-6xl md:text-8xl font-mono font-thin mb-4">
         MOVIEBUCKET
       </h1>
