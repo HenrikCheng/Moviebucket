@@ -6,11 +6,11 @@ import useMovieSearch from "../hooks/useMovieSearch"; // Import the custom hook
 import FeatureContent from "./featureContent";
 import Image from "next/image";
 import { useEffect } from "react";
+import MovieItem from "./movieItem";
 
 const SearchForm = () => {
 	const [name, setName] = useQueryState("");
 	const { data, loading, error, fetchData } = useMovieSearch(); // Use the custom hook
-
 	useEffect(() => {
 		if (name) fetchData(name);
 	}, []);
@@ -45,41 +45,7 @@ const SearchForm = () => {
 				<ul className="grid grid-cols-4 gap-4">
 					{movieData.results?.map((item) => (
 						<li key={item.id}>
-							<button type="button" className="relative">
-								<Image
-									src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
-									width={500}
-									height={500}
-									className="filter brightness-50"
-									alt="Picture of the author"
-								/>
-								<h4 className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center font-bold text-xl">
-									{item.title}
-								</h4>
-							</button>
-						</li>
-					))}
-				</ul>
-			);
-
-			return (
-				<ul>
-					{movieData.results?.map((item) => (
-						<li key={item.id}>
-							{item.title}
-							<Image
-								src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
-								width={500}
-								height={500}
-								alt="Picture of the author"
-							/>
-							<Image
-								src={`https://image.tmdb.org/t/p/w500/${item.backdrop_path}`}
-								width={500}
-								height={500}
-								alt="Picture of the author"
-							/>
-							{item.overview}
+							<MovieItem item={item} />
 						</li>
 					))}
 				</ul>
