@@ -10,6 +10,21 @@ interface MovieItemType {
 	backdrop_path: string;
 }
 
+interface ActorSearchResult {
+	data: {
+		cast: CastItemType[];
+	};
+	loading: boolean;
+	error: any;
+	fetchData: (id: string) => void;
+}
+
+interface CastItemType {
+	id: string;
+	name: string;
+	profile_path: string;
+}
+
 const MovieItem: React.FC<{ item: MovieItemType }> = ({ item }) => {
 	const [open, setOpen] = useState(false);
 
@@ -18,6 +33,7 @@ const MovieItem: React.FC<{ item: MovieItemType }> = ({ item }) => {
 		useEffect(() => {
 			fetchData(item.id);
 		}, []);
+
 		return (
 			<div className="fixed inset-0 z-10 overflow-auto bg-black bg-opacity-50 flex flex-col items-center justify-center w-screen h-screen">
 				<button
@@ -40,6 +56,22 @@ const MovieItem: React.FC<{ item: MovieItemType }> = ({ item }) => {
 						<h2 className="text-2xl font-bold">{item.title}</h2>
 					</div>
 					<p>{item.overview}</p>
+					<ul className="flex flex-row">
+						{data !== null &&
+							data.cast.length >= 1 &&
+							data.cast.slice(0, 8).map((person: any) => (
+								<li key={person.id}>
+									<Image
+										src={`https://image.tmdb.org/t/p/w500/${person.profile_path}`}
+										alt="actor"
+										width={100}
+										height={100}
+										className="rounded-full h-40 w-40 object-cover"
+									/>
+									<p>{person.name}</p>
+								</li>
+							))}
+					</ul>
 				</div>
 			</div>
 		);
