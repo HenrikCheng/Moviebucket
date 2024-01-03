@@ -2,15 +2,14 @@
 
 import { useQueryState } from "next-usequerystate";
 import Button from "./button";
-import useMovieSearch from "../hooks/useMovieSearch"; // Import the custom hook
+import { useMovieSearch } from "../hooks/useSearch";
 import FeatureContent from "./featureContent";
-import Image from "next/image";
 import { useEffect } from "react";
 import MovieItem from "./movieItem";
 
 const SearchForm = () => {
 	const [name, setName] = useQueryState("");
-	const { data, loading, error, fetchData } = useMovieSearch(); // Use the custom hook
+	const { data, loading, error, fetchData } = useMovieSearch();
 	useEffect(() => {
 		if (name) fetchData(name);
 	}, []);
@@ -21,8 +20,6 @@ const SearchForm = () => {
 	};
 
 	const ResultArea = () => {
-		console.log("Result: ", JSON.stringify(data, null, 2));
-
 		if (loading) return <p>Loading....</p>;
 		if (error) {
 			// Type assertion for error object
