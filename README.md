@@ -1,36 +1,55 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Project Overview
+Welcome to the Moviebucket project, a web application built with Next.js.
 
-## Getting Started
+Getting Started
+To begin exploring the project, follow these steps:
 
-First, run the development server:
+Clone the Repository: Start by cloning the repository to your local machine:
+git clone https://github.com/HenrikCheng/Moviebucket.git
 
-```bash
+Install Dependencies: Navigate to the project directory and install the necessary dependencies using one of the following package managers:
+
+npm install
+
+# or
+
+yarn install
+
+# or
+
+pnpm install
+
+# or
+
+bun install
+
+Run the Development Server: Launch the development server to preview the application locally:
 npm run dev
+
 # or
+
 yarn dev
+
 # or
+
 pnpm dev
+
 # or
+
 bun dev
-```
+Open http://localhost:3000 in your browser to view the application.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Moviebucket Overview
+Moviebucket is designed as a movie search web application, allowing users to explore a diverse collection of movies. While the project includes essential features for movie search and display, it's important to note that due to time constraints, certain features were not fully implemented.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Unimplemented Features
+Key Protection: In the current version, the project does not include a backend service within Next.js to secure API keys. It's recommended to implement a backend service to safeguard sensitive information.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Actor/Actress Movie History: A planned feature to explore the filmography of actors/actresses did not make it to the current version. This functionality would have allowed users to click on an actor/actress and discover the movies they are featured in.
 
-## Learn More
+Known Issues
+Despite my best efforts, there may be some small bugs present in the application. I acknowledge the existence of these issues and plan to address them in future updates.
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Website and Repository
+Live Website: https://moviebucket-beta.vercel.app
+GitHub Repository: https://github.com/HenrikCheng/Moviebucket
