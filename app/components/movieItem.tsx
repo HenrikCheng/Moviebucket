@@ -10,15 +10,6 @@ interface MovieItemType {
 	backdrop_path: string;
 }
 
-interface ActorSearchResult {
-	data: {
-		cast: CastItemType[];
-	};
-	loading: boolean;
-	error: any;
-	fetchData: (id: string) => void;
-}
-
 interface CastItemType {
 	id: string;
 	name: string;
@@ -58,10 +49,8 @@ const MovieItem: React.FC<{ item: MovieItemType }> = ({ item }) => {
 					</div>
 					<p>{item.overview}</p>
 					<ul className="flex flex-row">
-						{data &&
-							data.cast &&
-							data.cast.length >= 1 &&
-							data.cast.slice(0, 6).map((person: any) => (
+						{data && data.cast ? (
+							data.cast.slice(0, 6).map((person: CastItemType) => (
 								<li key={person.id} className="flex-none w-1/6">
 									<Image
 										src={`https://image.tmdb.org/t/p/w500/${person.profile_path}`}
@@ -76,7 +65,10 @@ const MovieItem: React.FC<{ item: MovieItemType }> = ({ item }) => {
 										<span className="font-bold">{person.character}</span>
 									</p>
 								</li>
-							))}
+							))
+						) : (
+							<></>
+						)}
 					</ul>
 				</div>
 			</div>

@@ -1,6 +1,22 @@
 import { SetStateAction, useState } from "react";
 import axios from "axios";
 
+interface CastItemType {
+	id: string;
+	name: string;
+	profile_path: string;
+	character: string;
+}
+
+interface ActorSearchResult {
+	data: {
+		cast: CastItemType[] | null;
+	};
+	loading: boolean;
+	error: any;
+	fetchData: (id: string) => void;
+}
+
 export const useMovieSearch = () => {
 	const [data, setData] = useState(null);
 	const [loading, setLoading] = useState(false);
@@ -27,7 +43,7 @@ export const useMovieSearch = () => {
 	return { data, loading, error, fetchData };
 };
 
-export const useActorSearch = () => {
+export const useActorSearch = (): ActorSearchResult => {
 	const [data, setData] = useState(null);
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState(null);
