@@ -23,6 +23,7 @@ interface CastItemType {
 	id: string;
 	name: string;
 	profile_path: string;
+	character: string;
 }
 
 const MovieItem: React.FC<{ item: MovieItemType }> = ({ item }) => {
@@ -37,7 +38,7 @@ const MovieItem: React.FC<{ item: MovieItemType }> = ({ item }) => {
 		return (
 			<div className="fixed inset-0 z-10 overflow-auto bg-black bg-opacity-50 flex flex-col items-center justify-center w-screen h-screen">
 				<button
-					className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 absolute right-2 top-16"
+					className="bg-blue-500 text-white px-6 py-4 text-xl rounded-md hover:bg-blue-600 absolute right-2 top-2"
 					onClick={() => setOpen(false)}
 				>
 					Close
@@ -47,8 +48,8 @@ const MovieItem: React.FC<{ item: MovieItemType }> = ({ item }) => {
 						item.backdrop_path || item.poster_path
 					}`}
 					alt="movie backdrop"
-					width={1000}
-					height={1000}
+					width={1920}
+					height={1080}
 					className="w-full"
 				/>
 				<div className="relative p-8 bg-black rounded-md flex flex-col">
@@ -57,18 +58,23 @@ const MovieItem: React.FC<{ item: MovieItemType }> = ({ item }) => {
 					</div>
 					<p>{item.overview}</p>
 					<ul className="flex flex-row">
-						{data !== null &&
+						{data &&
+							data.cast &&
 							data.cast.length >= 1 &&
-							data.cast.slice(0, 8).map((person: any) => (
-								<li key={person.id}>
+							data.cast.slice(0, 6).map((person: any) => (
+								<li key={person.id} className="flex-none w-1/6">
 									<Image
 										src={`https://image.tmdb.org/t/p/w500/${person.profile_path}`}
 										alt="actor"
-										width={100}
-										height={100}
-										className="rounded-full h-40 w-40 object-cover"
+										width={40}
+										height={40}
+										className="rounded h-40 w-40 object-cover flex-none"
 									/>
-									<p>{person.name}</p>
+									<p>
+										<span className="font-bold">{person.name}</span>
+										<span> as </span>
+										<span className="font-bold">{person.character}</span>
+									</p>
 								</li>
 							))}
 					</ul>
