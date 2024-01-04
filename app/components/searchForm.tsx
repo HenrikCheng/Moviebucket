@@ -40,11 +40,13 @@ const SearchForm = () => {
 
 			return (
 				<ul className="grid grid-cols-4 gap-4">
-					{movieData.results?.map((item) => (
-						<li key={item.id}>
-							<MovieItem item={item} />
-						</li>
-					))}
+					{movieData.results
+						?.filter((item) => item.poster_path && item.backdrop_path)
+						.map((item) => (
+							<li key={item.id}>
+								<MovieItem item={item} />
+							</li>
+						))}
 				</ul>
 			);
 		}

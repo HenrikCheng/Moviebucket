@@ -51,13 +51,13 @@ const MovieItem: React.FC<{ item: MovieItemType }> = ({ item }) => {
 					<ul className="flex flex-row">
 						{data && data.cast ? (
 							data.cast.slice(0, 6).map((person: CastItemType) => (
-								<li key={person.id} className="flex-none w-1/6">
+								<li key={person.id} className="flex-none w-1/6 p-4">
 									<Image
 										src={`https://image.tmdb.org/t/p/w500/${person.profile_path}`}
 										alt="actor"
 										width={40}
 										height={40}
-										className="rounded h-40 w-40 object-cover flex-none"
+										className="rounded-full h-40 w-40 object-cover flex-none p-2"
 									/>
 									<p>
 										<span className="font-bold">{person.name}</span>
@@ -83,14 +83,17 @@ const MovieItem: React.FC<{ item: MovieItemType }> = ({ item }) => {
 				type="button"
 				className="relative hover:scale-105 duration-200 delay-100"
 			>
-				<Image
-					src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
-					width={500}
-					height={500}
-					className="filter brightness-50"
-					alt="Picture of the author"
-					onError={() => "https://i.imgur.com/gf3TZMr.jpeg"}
-				/>
+				{item.poster_path ? (
+					<Image
+						src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
+						width={500}
+						height={500}
+						className="filter brightness-50"
+						alt="Poster of the film"
+					/>
+				) : (
+					<div className="h-60 w-60" />
+				)}
 				<h4 className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center font-bold text-2xl">
 					{item.title}
 				</h4>
