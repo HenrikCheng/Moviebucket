@@ -10,8 +10,8 @@ interface CastItemType {
 
 interface ActorSearchResult {
 	data: {
-		cast: CastItemType[] | null;
-	};
+		cast: CastItemType[];
+	} | null;
 	loading: boolean;
 	error: any;
 	fetchData: (id: string) => void;
