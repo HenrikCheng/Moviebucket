@@ -48,7 +48,7 @@ Key Protection: In the current version, the project does not include a backend s
 Actor/Actress Movie History: A planned feature to explore the filmography of actors/actresses did not make it to the current version. This functionality would have allowed users to click on an actor/actress and discover the movies they are featured in.
 
 Known Issues
-Despite my best efforts, there may be some small bugs present in the application. I acknowledge the existence of these issues and plan to address them in future updates.
+Despite my best efforts, there may be some small bugs present in the application. I believe this currently works best in **Chrome**. I acknowledge the existence of these issues and plan to address them in future updates.
 
 Website and Repository
 Live Website: https://moviebucket-beta.vercel.app
